@@ -43,16 +43,18 @@ function playRound(playerSelection, computerSelection) {
   const outcome = findOutcome(playerSelection, computerSelection);
 
   if (outcome === "lost") {
-    computer.score++;
+    computer.score += 2;
 
     return `You lost! ${capitalize(computerSelection)} beats 
     ${capitalize(playerSelection)}`;
   } else if (outcome === "won") {
-    player.score++;
+    player.score += 2;
 
     return `You won! ${capitalize(playerSelection)} beats 
     ${capitalize(computerSelection)}`;
   } else {
+    player.score++;
+    computer.score++;
     return `You tie! ${capitalize(computerSelection)} ties with 
     ${capitalize(playerSelection)}`;
   }
@@ -62,21 +64,40 @@ function resetScores() {
   players.forEach((player) => (player.score = 0));
 }
 
-function game() {
-  for (let i = 0; i < 5; i++) {
-    let playerSelection = prompt(
-      "Choose between \n1. Rock \n2.Paper \n3. Scissors"
-    );
-    playerSelection = playerSelection.trim().toLowerCase();
+function game(playerSelection) {
+  const currentGameResult = playRound(playerSelection, computerPlay());
 
-    let roundOutcome = playRound(playerSelection, computerPlay());
-    console.log(roundOutcome);
-  }
-  if (player.score > computer.score) {
-    console.log("You are the winner!");
-  } else {
-    console.log("Computer won. We'll get it next time!");
-  }
+  const currentStatus = document.querySelector(".current-status");
+  currentStatus.innerText = currentGameResult;
 
-  resetScores();
+  const playerScore = document.querySelector(".player-score span");
+  const computerScore = document.querySelector(".computer-score span");
+
+  playerScore.innerText = player.score;
+  computerScore.innerText = computer.score;
+
+  if (player.score + computer.score > 0) {
+    const currentScores = document.querySelector(".current-scores");
+    currentScores.hidden = false;
+  }
+  if (player.score + computer.score >= 10) {
+    const result = document.querySelector(".result");
+    if (player.score > computer.score) {
+      result.innerText = "The winner is you!";
+    } else if (player.score < computer.score) {
+      result.innerText = "The winner is the computer!";
+    } else {
+      result.innerText = "It is a tie!";
+    }
+  }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const buttons = document.querySelectorAll(".buttons-section button");
+
+  for (let button of buttons) {
+    button.addEventListener("click", function () {
+      game(this.dataset.choice);
+    });
+  }
+});
