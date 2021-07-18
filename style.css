@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#game,
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game {
+  height: 100vh;
+
+  background-color: hsl(177, 53%, 70%);
+}
+
+#container {
+  width: 100%;
+  max-width: 600px;
+  height: 500px;
+
+  background-color: hsl(125, 54%, 83%);
+
+  flex-direction: column;
+
+  box-shadow: 20px 20px 39px hsla(0, 0%, 0%, 0.356);
+  border-radius: 0.7rem;
+}
+
+#container button {
+  height: 8rem;
+  width: 8rem;
+
+  margin: 1rem;
+
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(294, 19%, 43%);
+
+  border-color: transparent;
+  border-radius: 50%;
+}
+
+.current-scores {
+  margin-top: 3rem;
+  margin-right: 2rem;
+
+  align-self: flex-end;
+}
