@@ -3,6 +3,10 @@
   box-sizing: border-box;
 }
 
+body {
+  font-size: 1.3rem;
+}
+
 #game,
 #container {
   display: flex;
@@ -13,20 +17,28 @@
 #game {
   height: 100vh;
 
-  background-color: hsl(177, 53%, 70%);
+  background-color: hsl(0, 0%, 30%);
 }
 
 #container {
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   height: 500px;
 
-  background-color: hsl(125, 54%, 83%);
+  background-color: hsl(0, 0%, 86%);
 
   flex-direction: column;
 
   box-shadow: 20px 20px 39px hsla(0, 0%, 0%, 0.356);
   border-radius: 0.7rem;
+}
+
+.buttons-section {
+  margin-top: 3rem;
+}
+
+.buttons-section i {
+  font-size: 3rem;
 }
 
 #container button {
@@ -42,9 +54,36 @@
   border-radius: 50%;
 }
 
+#container button:hover {
+  background-color: hsl(294, 19%, 53%);
+}
+
 .current-scores {
   margin-top: 3rem;
   margin-right: 2rem;
 
   align-self: flex-end;
+}
+
+.current-status {
+  margin: 1rem 0;
+}
+
+.result {
+  color: #808080;
+  background-color: #e2dfdd;
+
+  padding: 1rem;
+
+  border-radius: 3px;
+}
+
+.win {
+  color: #68a774;
+  background-color: #caf2cf;
+}
+
+.lose {
+  color: #d9492e;
+  background-color: #fadcdf;
 }
